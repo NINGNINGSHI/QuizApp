@@ -10,20 +10,10 @@ namespace QuizApp
         {
 
         }   
-
-        public int GetQuizScore()
+        public IQueryable<Quiz> GetByStateType(StateType type)
         {
-            throw new NotImplementedException();
+            return GetAll().Where(s => s.State == type);
         }
 
-        public string GetQuizState()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetQuizTitle()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

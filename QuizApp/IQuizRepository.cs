@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Linq;
 
 namespace QuizApp
 {
 	public interface IQuizRepository : ICRUDRepository<Quiz>
 	{
-		string GetQuizState();
-		string GetQuizTitle();
-		int GetQuizScore();
+		IQueryable<Quiz> GetByStateType(StateType type);
 	}
 }
