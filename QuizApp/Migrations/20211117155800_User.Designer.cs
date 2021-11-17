@@ -5,12 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using QuizApp;
 
-namespace Quiz.Migrations
+namespace QuizApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211108155249_Quiz")]
-    partial class Quiz
+    [Migration("20211117155800_User")]
+    partial class User
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,7 +21,7 @@ namespace Quiz.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Quiz", b =>
+            modelBuilder.Entity("QuizApp.Quiz", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

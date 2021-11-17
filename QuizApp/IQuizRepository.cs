@@ -1,13 +1,11 @@
 ﻿using System;
 
-public interface IQuizRepository : IDisposable
+namespace QuizApp
 {
-	Guid GetQuizId();
-	Quiz GetQuizById();
-	string GetQuizState();
-	string GetQuizScore();
-	void DeleteQuiz();
-	void ModifyQuizState();
-	void ModifyQuizScore();
-
+	public interface IQuizRepository : ICRUDRepository<Quiz>
+	{
+		string GetQuizState();
+		string GetQuizTitle();
+		int GetQuizScore();
+	}
 }

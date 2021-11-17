@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 
-public class AppDbContext : DbContext
+namespace QuizApp
 {
-	public DbSet<Quiz>Quizzes { get; set; }
-	public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+	public class AppDbContext : DbContext
 	{
-	}
-
+		public DbSet<Quiz> Quizes { get; set; }
+		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+		{
+		}
+    }
 }
+
