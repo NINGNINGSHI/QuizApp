@@ -15,5 +15,6 @@ namespace QuizApp
             return GetAll().Where(s => s.State == type);
         }
 
+
     }
 }
