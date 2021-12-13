@@ -3,6 +3,9 @@ using QuizApp.Services;
 using System;
 using System.Linq;
 
+/**
+ * Permettant de créer/éditer/supprimer/lire un Quiz, API ne renvoie jamais des entités mais des modèles.
+ */
 namespace QuizApp.Controllers
 {
 	public class QuizController : ApiControllerBase
@@ -22,16 +25,17 @@ namespace QuizApp.Controllers
         }
 
 		[HttpPost("create-or-update")]
-		public IActionResult CreateOrUpdate([FromBody] QuizModel model)
+		public IActionResult Create([FromBody] QuizModel model)
         {
-			//TODO
+			Quiz quiz = new(model.Id, model.Title);
+			_QuizService.Create(quiz);
 			return Ok();
-        }
+		}
 
-		[HttpDelete("delet/{id:Guid}")]
+		[HttpDelete("delete/{id:Guid}")]
 		public IActionResult Delete(Guid id)
 		{
-			//TODO
+			_QuizService.Delete(_QuizService.GetById(id));
 			return Ok();
 		}
 

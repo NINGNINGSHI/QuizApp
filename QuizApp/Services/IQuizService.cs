@@ -7,6 +7,6 @@ namespace QuizApp.Services
 {
     public interface IQuizService : ICRUDService<Quiz>
     {
-        IEnumerable<Quiz> GetByStateType(StateType type);
+        //IEnumerable<Quiz> GetByStateType(StateType type);
     }
 }

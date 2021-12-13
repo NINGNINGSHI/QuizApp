@@ -7,29 +7,36 @@ namespace QuizApp.Services
 {
     public class CRUDService<T> : ICRUDService<T> where T : EntityWithId
     {
+        private ICRUDRepository<T> _Repository;
+
+        public CRUDService(ICRUDRepository<T> _repository)
+        {
+            _Repository = _repository;
+        }
+
         public T Create(T entity)
         {
-            throw new NotImplementedException();
+            return _Repository.Create(entity);
         }
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            _Repository.Delete(entity);
         }
 
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return _Repository.GetAll();
         }
 
         public T GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _Repository.GetById(id);
         }
 
         public T Update(T entity)
         {
-            throw new NotImplementedException();
+            return _Repository.Update(entity);
         }
     }
 }

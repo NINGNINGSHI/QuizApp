@@ -1,6 +1,6 @@
 using System;
 
-namespace WebApplication2
+namespace QuizApp
 {
     public class WeatherForecast
     {

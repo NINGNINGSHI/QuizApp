@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
+/**
+ *  Permettra les opérations basiques CRUD sur n’importe quelle entité 
+*/
 namespace QuizApp
 {
 	public interface ICRUDRepository<T>

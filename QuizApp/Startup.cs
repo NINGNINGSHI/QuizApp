@@ -9,12 +9,13 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using QuizApp;
+using QuizApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication2
+namespace QuizApp
 {
     public class Startup
     {
@@ -36,6 +37,9 @@ namespace WebApplication2
             });
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //AddTransient : une nouvelle instance est fourni à chaque controleur / service
+            services.AddTransient<IQuizService, QuizService>();
+            services.AddTransient<IQuizRepository, QuizRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,7 +49,7 @@ namespace WebApplication2
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplication2 v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "QuizApp v1"));
             }
 
             app.UseHttpsRedirection();

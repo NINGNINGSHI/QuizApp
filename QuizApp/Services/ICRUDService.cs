@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+/**
+ *  Gérer la logique métier et les opérations CRUD de vos Quiz 
+ */
 namespace QuizApp.Services
 {
     public interface ICRUDService<T>

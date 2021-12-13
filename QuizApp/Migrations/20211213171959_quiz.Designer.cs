@@ -10,8 +10,8 @@ using QuizApp;
 namespace QuizApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211117155800_User")]
-    partial class User
+    [Migration("20211213171959_quiz")]
+    partial class quiz
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,18 +27,12 @@ namespace QuizApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Score")
-                        .HasColumnType("int");
-
-                    b.Property<string>("State")
+                    b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Quizzes");
+                    b.ToTable("Quizes");
                 });
 #pragma warning restore 612, 618
         }

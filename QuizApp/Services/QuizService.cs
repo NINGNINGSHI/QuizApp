@@ -9,14 +9,16 @@ namespace QuizApp.Services
     {
         private IQuizRepository _Repository;
 
-        public QuizService(IQuizRepository Repository)
+        public QuizService(IQuizRepository repository) : base(repository)
         {
-            _Repository = Repository;
+            _Repository = repository;
         }
 
+        /*
         public IEnumerable<Quiz> GetByStateType(StateType type)
         {
             return _Repository.GetByStateType(type);
         }
+        */
     }
 }
