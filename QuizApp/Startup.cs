@@ -26,10 +26,24 @@ namespace QuizApp
 
         public IConfiguration Configuration { get; }
 
+        private string Headers =
+            "Authorization,Accept,Content-Type,Accept-Encoding,Accept-Language,Connection,Cookie,Host,Origin,Referer,Sec-Fetch-Dest,Sec-Fetch-Mode,Sec-Fetch-Site,User-Agent";
+        private string Methods = "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS";
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors(opt =>
+            {
+            opt.AddPolicy("GlobalCors",
+                builder =>
+                {
+                    builder.WithHeaders(Headers.Trim().Split(",").ToArray());
+                    builder.WithExposedHeaders("Set-Cookie");
+                    builder.WithOrigins("https://localhost:3000", "https://localhost:5000", "https://localhost:5001", "https://localhost:55780", "https://localhost:44370");
+                    builder.WithMethods(Methods.Trim().Split(",").ToArray());
+                    builder.AllowCredentials();
+                });
+            });
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -53,6 +67,8 @@ namespace QuizApp
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("GlobalCors");
 
             app.UseRouting();
 
