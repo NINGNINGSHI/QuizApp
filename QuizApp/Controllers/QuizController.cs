@@ -11,19 +11,43 @@ namespace QuizApp.Controllers
 	public class QuizController : ApiControllerBase
 	{
 		private readonly IQuizService _QuizService;
-		public QuizController(IQuizService QuizService)
+		public QuizController(IQuizService quizService)
 		{
-			_QuizService = QuizService;
+			_QuizService = quizService;
 		}
 
-		[HttpGet("{id:Guid}")]
-		public IActionResult Get([FromRoute] Guid id)
+		//-----------------------GET--------------------------------
+
+		[HttpGet("get-quiz/{id:Guid}")]
+		public IActionResult GetQuiz([FromRoute] Guid id)
         {
 			var quiz = _QuizService.GetById(id);
 			if (quiz == null) return BadRequest("Quiz not found for given id");
 			return Ok(new QuizModel(quiz));
         }
 
+		[HttpGet("all")]
+		public IActionResult GetAllQuizes()
+		{
+			return Ok(_QuizService.GetAll().Select(s => new
+			{
+				s.Title,
+				s.Id
+			}));
+		}
+
+		[HttpGet("draft")]
+		public IActionResult GetAllDraftQuizes()
+		{
+			throw new NotImplementedException();
+		}
+
+		[HttpGet("published")]
+		public IActionResult GetAllPublishedQuizes()
+		{
+			throw new NotImplementedException();
+		}
+		//-----------------------POST--------------------------------
 		[HttpPost("create-or-update")]
 		public IActionResult Create([FromBody] QuizModel model)
         {
@@ -33,6 +57,8 @@ namespace QuizApp.Controllers
 			return Ok();
 		}
 
+
+		//-----------------------DELETE--------------------------------
 		[HttpDelete("delete/{id:Guid}")]
 		public IActionResult Delete(Guid id)
 		{
@@ -40,14 +66,6 @@ namespace QuizApp.Controllers
 			return Ok();
 		}
 
-		[HttpGet("all")]
-		public IActionResult GetAll()
-		{
-			return Ok(_QuizService.GetAll().Select(s => new
-			{
-				s.Title,
-				s.Id
-			}));
-		}
+
 	}
 }

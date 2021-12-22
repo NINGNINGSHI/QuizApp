@@ -14,11 +14,9 @@ namespace QuizApp.Services
             _Repository = repository;
         }
 
-        /*
         public IEnumerable<Quiz> GetByStateType(StateType type)
         {
             return _Repository.GetByStateType(type);
         }
-        */
     }
 }

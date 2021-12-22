@@ -20,7 +20,6 @@ namespace QuizApp
         public ICollection<Question> Questions { get; set; }
         public int Rate { get; set; }
 
-
         public QuizModel(Quiz quiz)
         {
             Id = quiz.Id;

@@ -18,6 +18,9 @@ namespace QuizApp.Entity
             Answers = answers;
         }
 
+        /**
+         * EF CONSTRUCTOR
+         */
         private Question(string desc)
         {
             Desc = desc;

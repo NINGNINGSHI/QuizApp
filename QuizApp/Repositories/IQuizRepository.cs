@@ -8,6 +8,8 @@ namespace QuizApp
 {
 	public interface IQuizRepository : ICRUDRepository<Quiz>
 	{
-		//IQueryable<Quiz> GetByStateType(StateType type);
+		IQueryable<Quiz> GetByStateType(StateType type);
+
+
 	}
 }

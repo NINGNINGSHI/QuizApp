@@ -10,6 +10,7 @@ namespace QuizApp
 		public DbSet<Quiz> Quizes { get; set; }
 		public DbSet<Question> Questions { get; set; }
 		public DbSet<Answer> Answers { get; set; }
+		public DbSet<Score> ScoreBoard { get; set; }
 
 		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
 		{

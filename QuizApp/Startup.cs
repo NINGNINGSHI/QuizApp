@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using QuizApp;
+using QuizApp.Repositories;
 using QuizApp.Services;
 using System;
 using System.Collections.Generic;
@@ -51,9 +52,15 @@ namespace QuizApp
             });
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IQuizRepository, QuizRepository>();
+            services.AddScoped<IQuestionRepository, QuestionRepository>();
+            services.AddScoped<IAnswerRepository, AnswerRepository>();
+            services.AddScoped<IScoreRepository, ScoreRepository>();
             //AddTransient : une nouvelle instance est fourni à chaque controleur / service
             services.AddTransient<IQuizService, QuizService>();
-            services.AddTransient<IQuizRepository, QuizRepository>();
+            services.AddTransient<IQuestionService, QuestionService>();
+            services.AddTransient<IAnswerService, AnswerService>();
+            services.AddTransient<IScoreService, ScoreService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

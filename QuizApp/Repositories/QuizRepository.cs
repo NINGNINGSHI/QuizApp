@@ -9,12 +9,12 @@ namespace QuizApp
         {
 
         }   
-        /*
+        
         public IQueryable<Quiz> GetByStateType(StateType type)
         {
             return GetAll().Where(s => s.State == type);
         }
-        */
+        
 
     }
 }
