@@ -27,7 +27,8 @@ namespace QuizApp.Controllers
 		[HttpPost("create-or-update")]
 		public IActionResult Create([FromBody] QuizModel model)
         {
-			Quiz quiz = new(model.Id, model.Title);
+			Quiz quiz = new(model.Title, model.State, model.Password, 
+				model.ScoreBoard, model.Questions, model.Rate);
 			_QuizService.Create(quiz);
 			return Ok();
 		}
