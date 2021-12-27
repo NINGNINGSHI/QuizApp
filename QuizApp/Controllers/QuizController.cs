@@ -39,7 +39,7 @@ namespace QuizApp.Controllers
 		}
 		*/
 
-		[HttpGet("draft")]
+		[HttpGet("drafted")]
 		public IActionResult GetAllDraftQuizes()
 		{
 			return Ok(_QuizService.GetByStateType(StateType.Draft).Select(s => new
