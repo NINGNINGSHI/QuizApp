@@ -14,5 +14,10 @@ namespace QuizApp.Services
         {
             _Repository = repository;
         }
+
+        public IEnumerable<Score> GetRankOfQuiz(Guid quizId)
+        {
+            return _Repository.GetScoreByQuizId(quizId);
+        }
     }
 }

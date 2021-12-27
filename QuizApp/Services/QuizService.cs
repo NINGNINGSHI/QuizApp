@@ -18,5 +18,12 @@ namespace QuizApp.Services
         {
             return _Repository.GetByStateType(type);
         }
+
+        public void PublishQuiz(Guid quizId)
+        {
+            Quiz quiz = _Repository.GetById(quizId);
+            quiz.State = StateType.Published;
+            _Repository.Update(quiz);
+        }
     }
 }

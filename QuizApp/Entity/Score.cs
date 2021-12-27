@@ -11,9 +11,15 @@ namespace QuizApp.Entity
     {
         public string Pseudo { get; set; }
         public int Value { get; set; }
-        public Quiz Quiz { get; set; }
+        public Guid QuizId { get; set; }
         public Score(string pseudo, int value)
         {
+            Pseudo = pseudo;
+            Value = value;
+        }
+        public Score(Guid quizId, string pseudo, int value)
+        {
+            QuizId = quizId;
             Pseudo = pseudo;
             Value = value;
         }

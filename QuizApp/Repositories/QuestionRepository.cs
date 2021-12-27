@@ -10,7 +10,11 @@ namespace QuizApp.Repositories
     {
         public QuestionRepository(AppDbContext context) : base(context)
         {
+        }
 
+        public IQueryable<Question> GetAllQuestionsByQuizId(Guid quizId)
+        {
+            return GetAll().Where(q => q.QuizId == quizId);
         }
     }
 }

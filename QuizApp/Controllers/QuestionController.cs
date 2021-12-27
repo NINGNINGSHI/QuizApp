@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QuizApp.Entity;
 using QuizApp.Models;
 using QuizApp.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace QuizApp.Controllers
 {
@@ -20,24 +18,28 @@ namespace QuizApp.Controllers
         //-----------------------GET--------------------------------
 
         [HttpGet("get-all-questions/{quizId:Guid}")]
-        public IActionResult GetAllQuestionsByQuizId([FromRoute] Guid quiz_id)
+        public IActionResult GetAllQuestionsByQuizId([FromRoute] Guid quizId)
         {
-            throw new NotImplementedException();
+            return Ok(_QuestionService.GetAllQuestionsByQuizId(quizId)); 
         }
 
         //-----------------------POST--------------------------------
         [HttpPost("create-or-update-question")]
         public IActionResult CreateQuestion([FromBody] QuestionModel model)
         {
-            throw new NotImplementedException();
+            Question Question = new(model.QuizId, model.Desc, model.Answers);
+            _QuestionService.Create(Question);
+            return Ok("Score created");
         }
 
 
         //-----------------------DELETE--------------------------------
+        /*
         [HttpDelete("delete-question/{id:Guid}")]
-        public IActionResult Delete(Guid id)
+        public IActionResult Delete([FromRoute] Guid id)
         {
             throw new NotImplementedException();
         }
+        */
     }
 }

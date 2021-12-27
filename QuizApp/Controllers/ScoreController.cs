@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QuizApp.Entity;
 using QuizApp.Models;
 using QuizApp.Services;
 using System;
@@ -19,18 +20,24 @@ namespace QuizApp.Controllers
 
         //-----------------------GET--------------------------------
 
-        [HttpGet("rank/{id:Guid}")]
+        [HttpGet("rank/{quizId:Guid}")]
         public IActionResult GetRankByQuizId([FromRoute] Guid quizId)
         {
-            throw new NotImplementedException();
+            return Ok(_ScoreService.GetRankOfQuiz(quizId).Select(s => new
+            {
+                s.Id,
+                s.Pseudo,
+                s.Value
+            }));
         }
 
         //-----------------------POST--------------------------------
         [HttpPost("create-or-update-Score")]
         public IActionResult CreateScore([FromBody] ScoreModel model)
         {
-            throw new NotImplementedException();
+            Score score = new(model.QuizId, model.Pseudo, model.Value);
+            _ScoreService.Create(score);
+            return Ok("Score created");
         }
-
     }
 }

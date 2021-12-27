@@ -31,17 +31,18 @@ namespace QuizApp
             Rate = quiz.Rate;
         }
 
+        //quand reçu depuis front, pour créer un nouvel quiz
         [JsonConstructor]
-        public QuizModel(Guid id, string title, StateType state, string password,
-            ICollection<Score> scoreBoard, List<Question> questions, int rate)
+        public QuizModel(string title, /*StateType state, */string password)
+           // ICollection<Score> scoreBoard, List<Question> questions, int rate)
         {
-            Id = id;
             Title = title;
-            State = state;
+            //State = state;
             Password = password;
-            ScoreBoard = scoreBoard;
-            Questions = questions;
-            Rate = rate;
+            //ScoreBoard = scoreBoard;
+            //Questions = questions;
+            //Rate = rate;
         }
+        
     }
 }

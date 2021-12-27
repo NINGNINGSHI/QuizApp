@@ -12,5 +12,10 @@ namespace QuizApp.Repositories
         {
 
         }
+
+        public IQueryable<Score> GetScoreByQuizId(Guid quizId)
+        {
+            return GetAll().Where(s => s.QuizId == quizId);
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace QuizApp.Models
     public class QuestionModel
     {
         public Guid Id { get; set; }
+        public Guid QuizId { get; set; }
         public string Desc { get; set; }
         public ICollection<Answer> Answers { get; set; }
 
@@ -21,9 +22,10 @@ namespace QuizApp.Models
         }
 
         [JsonConstructor]
-        public QuestionModel(Guid id, string desc, ICollection<Answer> answers)
+        public QuestionModel(Guid id, Guid quizId, string desc, ICollection<Answer> answers)
         {
             Id = id;
+            QuizId = quizId;
             Desc = desc;
             Answers = answers;
         }

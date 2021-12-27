@@ -8,5 +8,6 @@ namespace QuizApp.Services
 {
     public interface IQuestionService : ICRUDService<Question>
     {
+        IEnumerable<Question> GetAllQuestionsByQuizId(Guid quizId);
     }
 }

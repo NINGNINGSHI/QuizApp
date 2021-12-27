@@ -17,23 +17,31 @@ namespace QuizApp
         public int Rate { get; set; }
 
         //new Quiz
-        public Quiz(string title, StateType state, string password)
+        public Quiz(string title, /*StateType state,*/ string password)
         {
             Title = title;
-            State = state;
+            State = StateType.Draft;
             Password = password; 
             ScoreBoard = new List<Score>();
             Questions = new List<Question>();
             Rate = 0;
         }
-
+        
         //Quiz already exist
         public Quiz(string title, StateType state, string password, ICollection<Score> scoreBoard, 
-            ICollection<Question> questions, int rate) : this(title, state, password)
+            ICollection<Question> questions, int rate) //: this(title, state, password)
         {
+            Title = title;
+            State = state;
+            Password = password;
             ScoreBoard = scoreBoard;
             Questions = questions;
             Rate = rate;
         }
     }
+}
+public enum StateType
+{
+    Draft = 0,
+    Published = 1
 }

@@ -12,9 +12,16 @@ namespace QuizApp.Entity
         public string Desc { get; set; }
         public ICollection<Answer> Answers { get; set; }
         = new List<Answer>();
-        public Quiz Quiz { get; set; }
+        public Guid QuizId { get; set; }
         public Question(string desc, ICollection<Answer> answers)
         {
+            Desc = desc;
+            Answers = answers;
+        }
+        public Question(Guid quizId, string desc, ICollection<Answer> answers)
+        {
+            QuizId = quizId;
+            Desc = desc;
             Answers = answers;
         }
 

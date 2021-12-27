@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using QuizApp.Models;
 using QuizApp.Services;
 using System;
 using System.Linq;
@@ -18,14 +19,15 @@ namespace QuizApp.Controllers
 
 		//-----------------------GET--------------------------------
 
-		[HttpGet("get-quiz/{id:Guid}")]
-		public IActionResult GetQuiz([FromRoute] Guid id)
+		[HttpGet("get-quiz/{quizId:Guid}")]
+		public IActionResult GetQuiz([FromRoute] Guid quizId)
         {
-			var quiz = _QuizService.GetById(id);
+			var quiz = _QuizService.GetById(quizId);
 			if (quiz == null) return BadRequest("Quiz not found for given id");
 			return Ok(new QuizModel(quiz));
         }
 
+		/*
 		[HttpGet("all")]
 		public IActionResult GetAllQuizes()
 		{
@@ -35,37 +37,52 @@ namespace QuizApp.Controllers
 				s.Id
 			}));
 		}
+		*/
 
 		[HttpGet("draft")]
 		public IActionResult GetAllDraftQuizes()
 		{
-			throw new NotImplementedException();
+			return Ok(_QuizService.GetByStateType(StateType.Draft).Select(s => new
+			{
+				s.Title,
+				s.Id
+			}));
 		}
 
 		[HttpGet("published")]
 		public IActionResult GetAllPublishedQuizes()
 		{
-			throw new NotImplementedException();
+			return Ok(_QuizService.GetByStateType(StateType.Published).Select(s => new
+			{
+				s.Title,
+				s.Rate,
+				s.Id
+			}));
 		}
+
 		//-----------------------POST--------------------------------
-		[HttpPost("create-or-update")]
+
+		[HttpPost("create")]
 		public IActionResult Create([FromBody] QuizModel model)
         {
-			Quiz quiz = new(model.Title, model.State, model.Password, 
-				model.ScoreBoard, model.Questions, model.Rate);
+			Quiz quiz = new(model.Title, /*model.State,*/ model.Password);
 			_QuizService.Create(quiz);
-			return Ok();
+			return Ok("Quiz created");
 		}
 
+		[HttpPost("publish/{quizId:Guid}")]
+		public IActionResult PublishQuiz([FromRoute] Guid quizId)
+        {
+			_QuizService.PublishQuiz(quizId);
+			return Ok("Quiz published");
+		}
 
 		//-----------------------DELETE--------------------------------
-		[HttpDelete("delete/{id:Guid}")]
-		public IActionResult Delete(Guid id)
+		[HttpDelete("delete/{quizId:Guid}")]
+		public IActionResult Delete([FromRoute] Guid quizId)
 		{
-			_QuizService.Delete(_QuizService.GetById(id));
-			return Ok();
+			_QuizService.Delete(_QuizService.GetById(quizId));
+			return Ok("Quiz deleted");
 		}
-
-
 	}
 }

@@ -7,14 +7,11 @@ namespace QuizApp
     {
         public QuizRepository(AppDbContext context) : base(context)
         {
-
         }   
         
         public IQueryable<Quiz> GetByStateType(StateType type)
         {
             return GetAll().Where(s => s.State == type);
         }
-        
-
     }
 }
