@@ -17,7 +17,12 @@ namespace QuizApp.Services
 
         public IEnumerable<Question> GetAllQuestionsByQuizId(Guid quizId)
         {
-            throw new NotImplementedException();
+            return _Repository.GetAllQuestionsByQuizId(quizId);
+        }
+
+        public void CreateQuestionWithAnswers(Question question)
+        {
+            _Repository.CreateQuestionWithAnswers(question);
         }
     }
 }

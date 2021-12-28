@@ -1,4 +1,5 @@
-﻿using QuizApp.Entity;
+﻿using Microsoft.EntityFrameworkCore;
+using QuizApp.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +9,24 @@ namespace QuizApp.Repositories
 {
     public class QuestionRepository : CRUDRepository<Question>, IQuestionRepository
     {
+        AppDbContext _context;
         public QuestionRepository(AppDbContext context) : base(context)
         {
+            _context = context;
         }
 
         public IQueryable<Question> GetAllQuestionsByQuizId(Guid quizId)
         {
-            return GetAll().Where(q => q.QuizId == quizId);
+            return GetAll().Include(q => q.Answers).Where(q => q.QuizId == quizId);
+        }
+
+        
+        public void CreateQuestionWithAnswers(Question question)
+        {
+            /*
+            _context.Questions.Add(question);
+            _context.SaveChanges();
+            */
         }
     }
 }

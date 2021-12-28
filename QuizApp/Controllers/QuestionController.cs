@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using QuizApp.Entity;
 using QuizApp.Models;
 using QuizApp.Services;
 using System;
+using System.Collections.Generic;
 
 namespace QuizApp.Controllers
 {
@@ -25,11 +27,21 @@ namespace QuizApp.Controllers
 
         //-----------------------POST--------------------------------
         [HttpPost("create-or-update-question")]
-        public IActionResult CreateQuestion([FromBody] QuestionModel model)
+        public IActionResult CreateQuestion([FromBody]Question model)
         {
-            Question Question = new(model.QuizId, model.Desc, model.Answers);
-            _QuestionService.Create(Question);
-            return Ok("Score created");
+            //Question question = new Question(model.QuizId, model.Desc, model.Answers);
+            /*
+            var question = new
+            {
+                QuizId = model.QuizId,
+                Desc = model.Desc,
+                Answers = model.Answers
+            };
+           
+            Console.WriteLine(question);
+             */
+            _QuestionService.Create(model);
+            return Ok("Question created");
         }
 
 

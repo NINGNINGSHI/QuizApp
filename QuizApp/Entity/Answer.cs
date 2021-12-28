@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace QuizApp.Entity
@@ -12,7 +13,10 @@ namespace QuizApp.Entity
         public string Desc { get; set; }
         public bool RightAnswer { get; set; }
         public Guid QuestionId { get; set; }
+        [JsonIgnore]
+        public Question Question{ get; set; }
 
+        [JsonConstructor]
         public Answer(string desc, bool rightAnswer)
         {
             Desc = desc;

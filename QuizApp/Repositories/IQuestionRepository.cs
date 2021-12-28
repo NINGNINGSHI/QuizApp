@@ -9,5 +9,6 @@ namespace QuizApp.Repositories
     public interface IQuestionRepository : ICRUDRepository<Question>
     {
         IQueryable<Question> GetAllQuestionsByQuizId(Guid quizId);
+        void CreateQuestionWithAnswers(Question question);
     }
 }

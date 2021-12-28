@@ -1,8 +1,6 @@
-﻿using QuizApp.Entity;
+﻿using Newtonsoft.Json;
+using QuizApp.Entity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace QuizApp.Models
@@ -23,9 +21,8 @@ namespace QuizApp.Models
         }
 
         [JsonConstructor]
-        public AnswerModel(Guid questionId, string desc, bool rightAnswer)
+        public AnswerModel(string desc, bool rightAnswer)
         {
-            QuestionId = questionId;
             Desc = desc;
             RightAnswer = rightAnswer;
         }

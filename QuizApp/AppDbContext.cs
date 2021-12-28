@@ -15,6 +15,16 @@ namespace QuizApp
 		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
 		{
 		}
-    }
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			modelBuilder.Entity<Question>().HasOne(l => l.Quiz).WithMany(l => l.Questions)
+		  .HasForeignKey(l => l.QuizId);
+			modelBuilder.Entity<Score>().HasOne(l => l.Quiz).WithMany(l => l.ScoreBoard)
+		  .HasForeignKey(l => l.QuizId);
+			modelBuilder.Entity<Answer>().HasOne(l => l.Question).WithMany(l => l.Answers)
+		  .HasForeignKey(l => l.QuestionId);
+		}
+	}
 }
 
