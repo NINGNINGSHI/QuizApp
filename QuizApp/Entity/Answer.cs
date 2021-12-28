@@ -12,6 +12,13 @@ namespace QuizApp.Entity
         public string Desc { get; set; }
         public bool RightAnswer { get; set; }
         public Guid QuestionId { get; set; }
+
+        public Answer(string desc, bool rightAnswer)
+        {
+            Desc = desc;
+            RightAnswer = rightAnswer;
+        }
+
         public Answer(Guid questionId, string desc, bool rightAnswer)
         {
             QuestionId = questionId;

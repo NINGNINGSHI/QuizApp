@@ -44,7 +44,7 @@ namespace QuizApp.Controllers
 		{
 			return Ok(_QuizService.GetByStateType(StateType.Draft).Select(s => new
 			{
-				s.Title,
+				s.Title, 
 				s.Id
 			}));
 		}

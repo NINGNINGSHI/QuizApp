@@ -17,14 +17,14 @@ namespace QuizApp.Models
         public QuestionModel(Question q)
         {
             Id = q.Id;
+            QuizId = q.QuizId;
             Desc = q.Desc;
             Answers = q.Answers;
         }
 
         [JsonConstructor]
-        public QuestionModel(Guid id, Guid quizId, string desc, ICollection<Answer> answers)
+        public QuestionModel(Guid quizId, string desc, ICollection<Answer> answers)
         {
-            Id = id;
             QuizId = quizId;
             Desc = desc;
             Answers = answers;

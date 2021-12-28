@@ -16,8 +16,8 @@ namespace QuizApp
         public string Title { get; set; }
         public StateType State { get; set; }
         public string Password { get; set; }
-        public ICollection<Score> ScoreBoard { get; set; }
-        public ICollection<Question> Questions { get; set; }
+        //public ICollection<Score> ScoreBoard { get; set; }
+        //public ICollection<Question> Questions { get; set; }
         public int Rate { get; set; }
 
         public QuizModel(Quiz quiz)
@@ -26,8 +26,8 @@ namespace QuizApp
             Title = quiz.Title;
             State = quiz.State;
             Password = quiz.Password;
-            ScoreBoard = quiz.ScoreBoard;
-            Questions = quiz.Questions;
+            //ScoreBoard = quiz.ScoreBoard;
+            //Questions = quiz.Questions;
             Rate = quiz.Rate;
         }
 
