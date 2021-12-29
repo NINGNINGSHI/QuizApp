@@ -20,13 +20,5 @@ namespace QuizApp.Repositories
             return GetAll().Include(q => q.Answers).Where(q => q.QuizId == quizId);
         }
 
-        
-        public void CreateQuestionWithAnswers(Question question)
-        {
-            /*
-            _context.Questions.Add(question);
-            _context.SaveChanges();
-            */
-        }
     }
 }

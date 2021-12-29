@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuizApp.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,6 +25,13 @@ namespace QuizApp.Services
             Quiz quiz = _Repository.GetById(quizId);
             quiz.State = StateType.Published;
             _Repository.Update(quiz);
+        }
+
+        public bool CheckPassword(Guid quizId, string password)
+        {
+            return PasswordUtil.ConfirmPassword(password,
+                _Repository.GetById(quizId).Salt,
+                _Repository.GetById(quizId).Password);
         }
     }
 }

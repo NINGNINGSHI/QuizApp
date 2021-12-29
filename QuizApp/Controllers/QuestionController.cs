@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using QuizApp.Entity;
-using QuizApp.Models;
 using QuizApp.Services;
 using System;
-using System.Collections.Generic;
+
 
 namespace QuizApp.Controllers
 {

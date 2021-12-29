@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using QuizApp.Models;
 using QuizApp.Services;
 using System;
 using System.Linq;
-
+using QuizApp.Utils;
 /**
  * Permettant de créer/éditer/supprimer/lire un Quiz, API ne renvoie jamais des entités mais des modèles.
  */
 namespace QuizApp.Controllers
 {
-	public class QuizController : ApiControllerBase
+    public class QuizController : ApiControllerBase
 	{
 		private readonly IQuizService _QuizService;
 		public QuizController(IQuizService quizService)
@@ -65,7 +64,9 @@ namespace QuizApp.Controllers
 		[HttpPost("create")]
 		public IActionResult Create([FromBody] QuizModel model)
         {
-			Quiz quiz = new(model.Title, /*model.State,*/ model.Password);
+			string salt = PasswordUtil.GenerateSaltBytes();
+			Quiz quiz = new(model.Title, /*model.State,*/ 
+				PasswordUtil.GenerateSaltedHash(model.Password, salt), salt);
 			_QuizService.Create(quiz);
 			return Ok("Quiz created");
 		}
@@ -75,6 +76,18 @@ namespace QuizApp.Controllers
         {
 			_QuizService.PublishQuiz(quizId);
 			return Ok("Quiz published");
+		}
+
+		[HttpPost("check-password")]
+		public IActionResult PublishQuiz([FromBody]QuizModel model)
+		{
+			if (_QuizService.CheckPassword(model.Id, model.Password))
+            {
+				return Ok("Password correct");
+			} else
+            {
+				return BadRequest("Password not correct");
+			}
 		}
 
 		//-----------------------DELETE--------------------------------

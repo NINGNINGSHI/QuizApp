@@ -19,10 +19,5 @@ namespace QuizApp.Services
         {
             return _Repository.GetAllQuestionsByQuizId(quizId);
         }
-
-        public void CreateQuestionWithAnswers(Question question)
-        {
-            _Repository.CreateQuestionWithAnswers(question);
-        }
     }
 }

@@ -7,8 +7,9 @@ namespace QuizApp.Services
 {
     public interface IQuizService : ICRUDService<Quiz>
     {
-        public IEnumerable<Quiz> GetByStateType(StateType type);
+        IEnumerable<Quiz> GetByStateType(StateType type);
 
-        public void PublishQuiz(Guid quizId);
+        void PublishQuiz(Guid quizId);
+        bool CheckPassword(Guid quizId, string password);
     }
 }

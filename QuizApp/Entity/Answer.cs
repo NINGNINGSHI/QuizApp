@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text.Json.Serialization;
@@ -10,7 +11,9 @@ namespace QuizApp.Entity
     [Table("answer")]
     public class Answer : EntityWithId
     {
+        [Required]
         public string Desc { get; set; }
+        [Required]
         public bool RightAnswer { get; set; }
         public Guid QuestionId { get; set; }
         [JsonIgnore]

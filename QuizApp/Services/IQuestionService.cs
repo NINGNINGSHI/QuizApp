@@ -9,6 +9,6 @@ namespace QuizApp.Services
     public interface IQuestionService : ICRUDService<Question>
     {
         IEnumerable<Question> GetAllQuestionsByQuizId(Guid quizId);
-        void CreateQuestionWithAnswers(Question question);
+
     }
 }
