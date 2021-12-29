@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace QuizApp.Entity
 {
@@ -24,6 +22,7 @@ namespace QuizApp.Entity
             Desc = desc;
             Answers = answers;
         }
+
         [JsonConstructor]
         public Question(Guid quizId, string desc, ICollection<Answer> answers)
         {

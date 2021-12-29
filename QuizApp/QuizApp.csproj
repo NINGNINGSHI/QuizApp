@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Repositories\AnswerRepository.cs" />
+    <Compile Remove="Repositories\IAnswerRepository.cs" />
+    <Compile Remove="Services\AnswerService.cs" />
+    <Compile Remove="Services\IAnswerService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.12" />

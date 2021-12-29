@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 /**
@@ -7,13 +6,13 @@ using System.Linq;
 */
 namespace QuizApp
 {
-	public interface ICRUDRepository<T>
-	{ 
-		T GetById(Guid id);
-		T Create(T entity);
-		T Update(T entity);
-		void Delete(T entity);
-		IQueryable<T> GetAll();
-	}
+    public interface ICRUDRepository<T>
+    {
+        T GetById(Guid id);
+        T Create(T entity);
+        T Update(T entity);
+        void Delete(T entity);
+        IQueryable<T> GetAll();
+    }
 }
 

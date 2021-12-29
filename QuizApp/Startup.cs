@@ -1,20 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using QuizApp;
 using QuizApp.Repositories;
 using QuizApp.Services;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace QuizApp
 {
@@ -35,15 +29,15 @@ namespace QuizApp
         {
             services.AddCors(opt =>
             {
-            opt.AddPolicy("GlobalCors",
-                builder =>
-                {
-                    builder.WithHeaders(Headers.Trim().Split(",").ToArray());
-                    builder.WithExposedHeaders("Set-Cookie");
-                    builder.WithOrigins("https://localhost:3000", "https://localhost:5000", "https://localhost:5001", "https://localhost:55780", "https://localhost:44370", "https://localhost:44342");
-                    builder.WithMethods(Methods.Trim().Split(",").ToArray());
-                    builder.AllowCredentials();
-                });
+                opt.AddPolicy("GlobalCors",
+                    builder =>
+                    {
+                        builder.WithHeaders(Headers.Trim().Split(",").ToArray());
+                        builder.WithExposedHeaders("Set-Cookie");
+                        builder.WithOrigins("https://localhost:3000", "https://localhost:5000", "https://localhost:5001", "https://localhost:55780", "https://localhost:44370", "https://localhost:44342");
+                        builder.WithMethods(Methods.Trim().Split(",").ToArray());
+                        builder.AllowCredentials();
+                    });
             });
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -54,13 +48,26 @@ namespace QuizApp
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IQuizRepository, QuizRepository>();
             services.AddScoped<IQuestionRepository, QuestionRepository>();
-            services.AddScoped<IAnswerRepository, AnswerRepository>();
             services.AddScoped<IScoreRepository, ScoreRepository>();
             //AddTransient : une nouvelle instance est fourni à chaque controleur / service
             services.AddTransient<IQuizService, QuizService>();
             services.AddTransient<IQuestionService, QuestionService>();
-            services.AddTransient<IAnswerService, AnswerService>();
             services.AddTransient<IScoreService, ScoreService>();
+
+            services.AddMvc()
+                .ConfigureApiBehaviorOptions(options =>
+                {
+                    options.InvalidModelStateResponseFactory = actionContext =>
+                    {
+                        var myModelState = actionContext.ModelState;
+                        return new BadRequestObjectResult(new
+                        {
+                            ValidationProblemOriginAttribute = myModelState.Keys,
+                            Details = myModelState.Values.Select(s => s.Errors)
+                        });
+                    };
+                });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,9 +3,7 @@ using QuizApp.Entity;
 using QuizApp.Models;
 using QuizApp.Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace QuizApp.Controllers
 {
@@ -37,7 +35,7 @@ namespace QuizApp.Controllers
         {
             Score score = new(model.QuizId, model.Pseudo, model.Value);
             _ScoreService.Create(score);
-            return Ok("Score created");
+            return Ok("Score est créé");
         }
     }
 }

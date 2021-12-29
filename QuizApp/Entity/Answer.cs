@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace QuizApp.Entity
 {
@@ -17,7 +14,7 @@ namespace QuizApp.Entity
         public bool RightAnswer { get; set; }
         public Guid QuestionId { get; set; }
         [JsonIgnore]
-        public Question Question{ get; set; }
+        public Question Question { get; set; }
 
         [JsonConstructor]
         public Answer(string desc, bool rightAnswer)

@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using QuizApp.Entity;
 using System;
-using System.Threading.Tasks;
 
 namespace QuizApp.Models
 {

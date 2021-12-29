@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace QuizApp.Utils
 {
@@ -11,15 +9,12 @@ namespace QuizApp.Utils
     {
         public static string GenerateSaltBytes()
         {
-            // Define min and max salt sizes.
             int minSaltSize = 4;
             int maxSaltSize = 8;
 
             // Generate a random number for the size of the salt.
             Random random = new Random();
             int saltSize = random.Next(minSaltSize, maxSaltSize);
-
-            // Allocate a byte array, which will hold the salt.
             byte[] saltBytes = new byte[saltSize];
 
             // Initialize a random number generator.

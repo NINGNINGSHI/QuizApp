@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace QuizApp.Services
 {
@@ -11,5 +9,6 @@ namespace QuizApp.Services
 
         void PublishQuiz(Guid quizId);
         bool CheckPassword(Guid quizId, string password);
+        bool IsQuizTitleExist(string title);
     }
 }

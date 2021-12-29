@@ -3,7 +3,6 @@ using QuizApp.Entity;
 using QuizApp.Services;
 using System;
 
-
 namespace QuizApp.Controllers
 {
     public class QuestionController : ApiControllerBase
@@ -20,36 +19,16 @@ namespace QuizApp.Controllers
         [HttpGet("get-all-questions/{quizId:Guid}")]
         public IActionResult GetAllQuestionsByQuizId([FromRoute] Guid quizId)
         {
-            return Ok(_QuestionService.GetAllQuestionsByQuizId(quizId)); 
+            return Ok(_QuestionService.GetAllQuestionsByQuizId(quizId));
         }
 
         //-----------------------POST--------------------------------
         [HttpPost("create-or-update-question")]
-        public IActionResult CreateQuestion([FromBody]Question model)
+        public IActionResult CreateQuestion([FromBody] Question question)
         {
             //Question question = new Question(model.QuizId, model.Desc, model.Answers);
-            /*
-            var question = new
-            {
-                QuizId = model.QuizId,
-                Desc = model.Desc,
-                Answers = model.Answers
-            };
-           
-            Console.WriteLine(question);
-             */
-            _QuestionService.Create(model);
+            _QuestionService.Create(question);
             return Ok("Question created");
         }
-
-
-        //-----------------------DELETE--------------------------------
-        /*
-        [HttpDelete("delete-question/{id:Guid}")]
-        public IActionResult Delete([FromRoute] Guid id)
-        {
-            throw new NotImplementedException();
-        }
-        */
     }
 }

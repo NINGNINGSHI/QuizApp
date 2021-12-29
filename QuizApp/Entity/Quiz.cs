@@ -1,9 +1,7 @@
 ﻿using QuizApp.Entity;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace QuizApp
 {
@@ -22,7 +20,7 @@ namespace QuizApp
         public int Rate { get; set; }
 
         //new Quiz
-        public Quiz(string title, /*StateType state,*/ string password, string salt)
+        public Quiz(string title, string password, string salt)
         {
             Title = title;
             State = StateType.Draft;
@@ -30,20 +28,6 @@ namespace QuizApp
             Salt = salt;
             Rate = 0;
         }
-       
-        /*
-        //Quiz already exist
-        public Quiz(string title, StateType state, string password, ICollection<Score> scoreBoard, 
-            ICollection<Question> questions, int rate) //: this(title, state, password)
-        {
-            Title = title;
-            State = state;
-            Password = password;
-            ScoreBoard = scoreBoard;
-            Questions = questions;
-            Rate = rate;
-        }
-        */
     }
 }
 public enum StateType

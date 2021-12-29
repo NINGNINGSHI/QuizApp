@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace QuizApp.Services
 {
@@ -32,6 +31,11 @@ namespace QuizApp.Services
             return PasswordUtil.ConfirmPassword(password,
                 _Repository.GetById(quizId).Salt,
                 _Repository.GetById(quizId).Password);
+        }
+
+        public bool IsQuizTitleExist(string title)
+        {
+            return _Repository.GetAll().Where(t => t.Title.Equals(title)).Count() != 0;
         }
     }
 }
