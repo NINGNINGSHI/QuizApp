@@ -32,7 +32,7 @@ namespace QuizApp.Models
             }
 
             //Password est vide ?
-            if (service.IsQuizTitleExist(Password))
+            if (string.IsNullOrWhiteSpace(Password))
             {
                 yield return new ValidationResult("Le mot de passe ne peut pas être vide.",
                     new List<string>()
