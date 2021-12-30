@@ -34,7 +34,7 @@ namespace QuizApp
                     {
                         builder.WithHeaders(Headers.Trim().Split(",").ToArray());
                         builder.WithExposedHeaders("Set-Cookie");
-                        builder.WithOrigins("https://localhost:3000", "https://localhost:5000", "https://localhost:5001", "https://localhost:55780", "https://localhost:44370", "https://localhost:44342");
+                        builder.WithOrigins("http://localhost:3000", "https://localhost:5000", "https://localhost:5001", "https://localhost:55780", "https://localhost:44370", "https://localhost:44342");
                         builder.WithMethods(Methods.Trim().Split(",").ToArray());
                         builder.AllowCredentials();
                     });
