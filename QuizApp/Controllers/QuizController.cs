@@ -57,7 +57,7 @@ namespace QuizApp.Controllers
             Quiz quiz = new(model.Title, PasswordUtil.GenerateSaltedHash(
                 model.Password, salt), salt);
             _QuizService.Create(quiz);
-            return Ok("Quiz est créé");
+            return Ok(quiz.Id);
         }
 
         [HttpPost("publish/{quizId:Guid}")]
