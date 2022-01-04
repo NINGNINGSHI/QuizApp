@@ -14,6 +14,7 @@ namespace QuizApp
         public string Password { get; set; }
         public int Rate { get; set; }
 
+
         public CreateQuizModel(Quiz quiz)
         {
             Id = quiz.Id;
@@ -24,11 +25,13 @@ namespace QuizApp
         }
 
         [JsonConstructor]
-        public CreateQuizModel(string title, string password)
+        public CreateQuizModel(string title, string password, int rate)
         {
             Title = title;
             Password = password;
+            Rate = rate;
         }
+        
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

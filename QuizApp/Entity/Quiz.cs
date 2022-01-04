@@ -8,15 +8,12 @@ namespace QuizApp
     [Table("quiz")]
     public class Quiz : EntityWithId
     {
-        [Required]
         public string Title { get; set; }
         public StateType State { get; set; }
-        [Required]
         public string Password { get; set; }
-        [Required]
         public string Salt { get; set; }
-        public ICollection<Score> ScoreBoard { get; set; }
-        public ICollection<Question> Questions { get; set; }
+        public virtual ICollection<Score> ScoreBoard { get; set; }
+        public virtual ICollection<Question> Questions { get; set; }
         public int Rate { get; set; }
 
         //new Quiz
@@ -27,6 +24,8 @@ namespace QuizApp
             Password = password;
             Salt = salt;
             Rate = 0;
+            ScoreBoard = new List<Score>();
+            Questions = new List<Question>();
         }
     }
 }

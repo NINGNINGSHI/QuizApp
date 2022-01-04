@@ -10,7 +10,7 @@ namespace QuizApp.Models
         public string Desc { get; set; }
         public bool RightAnswer { get; set; }
         public Guid QuestionId { get; set; }
-
+        
         public AnswerModel(Answer q)
         {
             Id = q.Id;
@@ -25,5 +25,6 @@ namespace QuizApp.Models
             Desc = desc;
             RightAnswer = rightAnswer;
         }
+        
     }
 }

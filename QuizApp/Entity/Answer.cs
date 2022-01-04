@@ -8,15 +8,11 @@ namespace QuizApp.Entity
     [Table("answer")]
     public class Answer : EntityWithId
     {
-        [Required]
         public string Desc { get; set; }
-        [Required]
         public bool RightAnswer { get; set; }
         public Guid QuestionId { get; set; }
-        [JsonIgnore]
-        public Question Question { get; set; }
+        public virtual Question Question { get; set; }
 
-        [JsonConstructor]
         public Answer(string desc, bool rightAnswer)
         {
             Desc = desc;

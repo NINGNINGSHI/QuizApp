@@ -10,14 +10,14 @@ namespace QuizApp.Models
     {
         public Guid Id { get; set; }
         public string Password { get; set; }
-
+        
         [JsonConstructor]
         public CheckPasswordModel(Guid id, string password)
         {
             Id = id;
             Password = password;
         }
-
+        
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var service = (IQuizService)validationContext.GetService(typeof(IQuizService));

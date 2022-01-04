@@ -37,5 +37,12 @@ namespace QuizApp.Services
         {
             return _Repository.GetAll().Where(t => t.Title.Equals(title)).Count() != 0;
         }
+
+        public void UpdateRate(Guid quizId, int rate)
+        {
+            Quiz quiz = _Repository.GetById(quizId);
+            quiz.Rate = rate;
+            _Repository.Update(quiz);
+        }
     }
 }

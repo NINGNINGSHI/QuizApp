@@ -13,7 +13,7 @@ namespace QuizApp.Models
         public string Pseudo { get; set; }
         public int Value { get; set; }
         public Guid QuizId { get; set; }
-
+    
         public ScoreModel(Score s)
         {
             Id = s.Id;
@@ -29,7 +29,7 @@ namespace QuizApp.Models
             Pseudo = pseudo;
             Value = value;
         }
-
+        
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var service = (IScoreService)validationContext.GetService(typeof(IScoreService));

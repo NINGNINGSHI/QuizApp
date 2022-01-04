@@ -8,14 +8,10 @@ namespace QuizApp.Entity
     [Table("score")]
     public class Score : EntityWithId
     {
-        [Required]
         public string Pseudo { get; set; }
-        [Required]
         public int Value { get; set; }
-        [Required]
         public Guid QuizId { get; set; }
-        [JsonIgnore]
-        public Quiz Quiz { get; set; }
+        public virtual Quiz Quiz { get; set; }
 
         public Score(string pseudo, int value)
         {

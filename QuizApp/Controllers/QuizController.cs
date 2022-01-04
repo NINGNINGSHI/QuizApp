@@ -50,14 +50,21 @@ namespace QuizApp.Controllers
 
         //-----------------------POST--------------------------------
 
-        [HttpPost("create")]
-        public IActionResult Create([FromBody] CreateQuizModel model)
+        [HttpPost("create-quiz")]
+        public IActionResult CreateQuiz([FromBody] CreateQuizModel model)
         {
             string salt = PasswordUtil.GenerateSaltBytes();
             Quiz quiz = new(model.Title, PasswordUtil.GenerateSaltedHash(
                 model.Password, salt), salt);
             _QuizService.Create(quiz);
             return Ok(quiz.Id);
+        }
+
+        [HttpPost("update-rate")]
+        public IActionResult UpdateQuiz([FromBody] Guid quizId, int rate)
+        {
+            _QuizService.UpdateRate(quizId, rate);
+            return Ok(quizId);
         }
 
         [HttpPost("publish/{quizId:Guid}")]

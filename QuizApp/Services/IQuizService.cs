@@ -10,5 +10,6 @@ namespace QuizApp.Services
         void PublishQuiz(Guid quizId);
         bool CheckPassword(Guid quizId, string password);
         bool IsQuizTitleExist(string title);
+        void UpdateRate(Guid quizId, int rate);
     }
 }

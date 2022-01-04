@@ -3,17 +3,19 @@ using QuizApp.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace QuizApp.Models
 {
-    public class CreateQuestionModel : IValidatableObject
+    public class CreateUpdateQuestionModel : IValidatableObject
     {
         public Guid Id { get; set; }
         public Guid QuizId { get; set; }
         public string Desc { get; set; }
         public ICollection<Answer> Answers { get; set; }
 
-        public CreateQuestionModel(Question q)
+        
+        public CreateUpdateQuestionModel(CreateUpdateQuestionModel q)
         {
             Id = q.Id;
             QuizId = q.QuizId;
@@ -21,13 +23,14 @@ namespace QuizApp.Models
             Answers = q.Answers;
         }
 
-        public CreateQuestionModel(Guid quizId, string desc, ICollection<Answer> answers)
+        [JsonConstructor]
+        public CreateUpdateQuestionModel(Guid quizId, string desc, ICollection<Answer> answers)
         {
             QuizId = quizId;
             Desc = desc;
             Answers = answers;
         }
-
+        
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var service = (IQuestionService)validationContext.GetService(typeof(IQuestionService));
