@@ -30,7 +30,7 @@ namespace QuizApp.Controllers
         public IActionResult CreateQuestion([FromBody] CreateQuestionModel model)
         {
             Question question = new Question(model.QuizId, model.Desc,
-                Utils.Mappers.ConvertAnswerModelsToEntity(model.Answers)); ;
+                Mappers.ConvertAnswerModelsToEntity(model.Answers)); ;
             _QuestionService.Create(question);
             return Ok(Messages.QuestionCreated);
         }
@@ -39,7 +39,7 @@ namespace QuizApp.Controllers
         public IActionResult UpdateQuestion([FromBody] UpdateQuestionModel model)
         {
             Question question = new Question(model.Id, model.QuizId, model.Desc,
-                Utils.Mappers.ConvertAnswerModelsToEntity(model.Answers));
+                Mappers.ConvertAnswerModelsToEntity(model.Answers));
             _QuestionService.UpdateQuestionWithAnswers(question);
             return Ok(Messages.QuestionUpdated);
         }
