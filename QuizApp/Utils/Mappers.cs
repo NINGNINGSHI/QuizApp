@@ -32,13 +32,13 @@ namespace QuizApp.Utils
         }
 
 
-        public static ICollection<CreateQuestionModel> ConvertQuestionEntityToModels
+        public static ICollection<DisplayUpdateQuestionModel> ConvertQuestionEntityToModels
             (IEnumerable<Question> questions)
         {
-            ICollection<CreateQuestionModel> res = new List<CreateQuestionModel>();
+            ICollection<DisplayUpdateQuestionModel> res = new List<DisplayUpdateQuestionModel>();
             foreach (Question q in questions)
             {
-                res.Add(new CreateQuestionModel(q.QuizId, q.Desc,
+                res.Add(new DisplayUpdateQuestionModel(q.Id, q.QuizId, q.Desc,
                     ConvertEntityToAnswerModels(q.Answers)));
             }
             return res;

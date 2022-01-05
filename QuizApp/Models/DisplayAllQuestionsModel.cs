@@ -9,11 +9,11 @@ namespace QuizApp.Models
 {
     public class DisplayAllQuestionsModel
     {
-        public ICollection<CreateQuestionModel> Questions { get; set; }
+        public ICollection<DisplayUpdateQuestionModel> Questions { get; set; }
 
-        public DisplayAllQuestionsModel(IEnumerable<CreateQuestionModel> questions)
+        public DisplayAllQuestionsModel(IEnumerable<DisplayUpdateQuestionModel> questions)
         {
-            Questions = new List<CreateQuestionModel>(questions);
+            Questions = new List<DisplayUpdateQuestionModel>(questions);
         }
     }
 }

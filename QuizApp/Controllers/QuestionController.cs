@@ -36,7 +36,7 @@ namespace QuizApp.Controllers
         }
 
         [HttpPost("update-question")]
-        public IActionResult UpdateQuestion([FromBody] UpdateQuestionModel model)
+        public IActionResult UpdateQuestion([FromBody] DisplayUpdateQuestionModel model)
         {
             Question question = new Question(model.Id, model.QuizId, model.Desc,
                 Mappers.ConvertAnswerModelsToEntity(model.Answers));

@@ -15,6 +15,15 @@ namespace QuizApp.Models
         public string Desc { get; set; }
         public virtual ICollection<AnswerModel> Answers { get; set; }
 
+        public UpdateQuestionModel(Guid id, Guid quizId, string desc,
+            ICollection<AnswerModel> answers)
+        {
+            Id = id;
+            QuizId = quizId;
+            Desc = desc;
+            Answers = answers;
+        }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             //Id est vide ?
