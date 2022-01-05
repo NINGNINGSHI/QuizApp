@@ -21,8 +21,8 @@ namespace QuizApp.Controllers
         [HttpGet("get-all-questions/{quizId:Guid}")]
         public IActionResult GetAllQuestionsByQuizId([FromRoute] Guid quizId)
         {
-            return Ok(new DisplayAllQuestionsModel(
-                _QuestionService.GetAllQuestionsByQuizId(quizId)));
+            return Ok(new DisplayAllQuestionsModel(Mappers.ConvertQuestionEntityToModels(
+                _QuestionService.GetAllQuestionsByQuizId(quizId))));
         }
 
         //-----------------------POST--------------------------------

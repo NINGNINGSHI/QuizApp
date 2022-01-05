@@ -14,6 +14,13 @@ namespace QuizApp.Models
         public string Desc { get; set; }
         public virtual ICollection<AnswerModel> Answers { get; set; }
 
+        public CreateQuestionModel(Guid quizId, string desc, ICollection<AnswerModel> answers)
+        {
+            QuizId = quizId;
+            Desc = desc;
+            Answers = answers;
+        }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var service = (IQuestionService)validationContext.GetService(typeof(IQuestionService));

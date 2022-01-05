@@ -12,6 +12,12 @@ namespace QuizApp.Models
         public string Desc { get; set; }
         public bool RightAnswer { get; set; }
 
+        public AnswerModel(string desc, bool rightAnswer)
+        {
+            Desc = desc;
+            RightAnswer = rightAnswer;
+        }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
 
