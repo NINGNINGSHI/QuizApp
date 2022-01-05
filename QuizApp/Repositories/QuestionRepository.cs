@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QuizApp.Entity;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace QuizApp.Repositories
@@ -17,6 +18,5 @@ namespace QuizApp.Repositories
         {
             return GetAll().Include(q => q.Answers).Where(q => q.QuizId == quizId);
         }
-
     }
 }

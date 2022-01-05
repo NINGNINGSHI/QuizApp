@@ -8,5 +8,6 @@ namespace QuizApp.Services
     {
         IEnumerable<Question> GetAllQuestionsByQuizId(Guid quizId);
 
+        void UpdateQuestionWithAnswers(Question question);
     }
 }

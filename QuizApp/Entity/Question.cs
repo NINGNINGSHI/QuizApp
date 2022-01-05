@@ -12,14 +12,10 @@ namespace QuizApp.Entity
         public string Desc { get; set; }
         public virtual ICollection<Answer> Answers { get; set; }
         public Guid QuizId { get; set; }
+        [JsonIgnore]
         public virtual Quiz Quiz { get; set; }
 
-        public Question(string desc, ICollection<Answer> answers)
-        {
-            Desc = desc;
-            Answers = answers;
-        }
-
+        //Pour créer une question
         public Question(Guid quizId, string desc, ICollection<Answer> answers)
         {
             QuizId = quizId;
@@ -27,6 +23,14 @@ namespace QuizApp.Entity
             Answers = answers;
         }
 
+        //Pour modifier une question
+        public Question(Guid id, Guid quizId, string desc, ICollection<Answer> answers)
+        {
+            Id = id;
+            QuizId = quizId;
+            Desc = desc;
+            Answers = answers;
+        }
         /**
          * EF CONSTRUCTOR
          */

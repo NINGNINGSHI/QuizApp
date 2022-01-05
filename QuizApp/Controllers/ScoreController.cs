@@ -21,21 +21,17 @@ namespace QuizApp.Controllers
         [HttpGet("rank/{quizId:Guid}")]
         public IActionResult GetRankByQuizId([FromRoute] Guid quizId)
         {
-            return Ok(_ScoreService.GetRankOfQuiz(quizId).Select(s => new
-            {
-                s.Id,
-                s.Pseudo,
-                s.Value
-            }));
+            return Ok(_ScoreService.GetRankByQuizId(quizId).Select(s => new
+            DisplayRankModel(s)));
         }
 
         //-----------------------POST--------------------------------
         [HttpPost("create-or-update-Score")]
-        public IActionResult CreateScore([FromBody] ScoreModel model)
+        public IActionResult CreateScore([FromBody] CreateScoreModel model)
         {
             Score score = new(model.QuizId, model.Pseudo, model.Value);
             _ScoreService.Create(score);
-            return Ok("Score est créé");
+            return Ok();
         }
     }
 }

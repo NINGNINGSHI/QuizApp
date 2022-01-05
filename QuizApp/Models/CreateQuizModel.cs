@@ -1,4 +1,5 @@
 ﻿using QuizApp.Services;
+using QuizApp.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,30 +9,8 @@ namespace QuizApp
 {
     public class CreateQuizModel : IValidatableObject
     {
-        public Guid Id { get; set; }
         public string Title { get; set; }
-        public StateType State { get; set; }
         public string Password { get; set; }
-        public int Rate { get; set; }
-
-
-        public CreateQuizModel(Quiz quiz)
-        {
-            Id = quiz.Id;
-            Title = quiz.Title;
-            State = quiz.State;
-            Password = quiz.Password;
-            Rate = quiz.Rate;
-        }
-
-        [JsonConstructor]
-        public CreateQuizModel(string title, string password, int rate)
-        {
-            Title = title;
-            Password = password;
-            Rate = rate;
-        }
-        
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
@@ -39,7 +18,7 @@ namespace QuizApp
             //Title est vide ?
             if (string.IsNullOrWhiteSpace(Title))
             {
-                yield return new ValidationResult("Le titre ne peut pas être vide.",
+                yield return new ValidationResult(Messages.EmptyTitle,
                     new List<string>()
                 {
                     nameof(Title)
@@ -49,7 +28,7 @@ namespace QuizApp
             //Title existe déjà dans BDD?
             if (service.IsQuizTitleExist(Title))
             {
-                yield return new ValidationResult("Ce titre existe déjà.",
+                yield return new ValidationResult(Messages.ExistsTitle,
                     new List<string>()
                 {
                     nameof(Title)
@@ -59,7 +38,7 @@ namespace QuizApp
             //Password est vide ?
             if (string.IsNullOrWhiteSpace(Password))
             {
-                yield return new ValidationResult("Le mot de passe ne peut pas être vide.",
+                yield return new ValidationResult(Messages.EmptyPassword,
                     new List<string>()
                 {
                 nameof(Password)

@@ -23,29 +23,22 @@ namespace QuizApp.Controllers
         public IActionResult GetQuiz([FromRoute] Guid quizId)
         {
             var quiz = _QuizService.GetById(quizId);
-            if (quiz == null) return BadRequest("Quiz n'est par trouvé avec cet Id");
-            return Ok(new CreateQuizModel(quiz));
+            if (quiz == null) return BadRequest(Messages.QuizNotFound);
+            return Ok(new DisplayQuizModel(quiz));
         }
 
         [HttpGet("drafted")]
         public IActionResult GetAllDraftQuizes()
         {
             return Ok(_QuizService.GetByStateType(StateType.Draft).Select(s => new
-            {
-                s.Title,
-                s.Id
-            }));
+            DisplayDraftedQuizes(s)));
         }
 
         [HttpGet("published")]
         public IActionResult GetAllPublishedQuizes()
         {
             return Ok(_QuizService.GetByStateType(StateType.Published).Select(s => new
-            {
-                s.Title,
-                s.Rate,
-                s.Id
-            }));
+            DisplayDraftedQuizes(s)));
         }
 
         //-----------------------POST--------------------------------
@@ -61,29 +54,29 @@ namespace QuizApp.Controllers
         }
 
         [HttpPost("update-rate")]
-        public IActionResult UpdateQuiz([FromBody] Guid quizId, int rate)
+        public IActionResult UpdateQuiz([FromBody] UpdateRatesModel model)
         {
-            _QuizService.UpdateRate(quizId, rate);
-            return Ok(quizId);
+            _QuizService.UpdateRate(model.QuizId, model.Rate);
+            return Ok(model.QuizId);
         }
 
         [HttpPost("publish/{quizId:Guid}")]
         public IActionResult PublishQuiz([FromRoute] Guid quizId)
         {
             _QuizService.PublishQuiz(quizId);
-            return Ok("Quiz est publié");
+            return Ok(Messages.QuizPublished);
         }
 
         [HttpPost("check-password")]
         public IActionResult PublishQuiz([FromBody] CheckPasswordModel model)
         {
-            if (_QuizService.CheckPassword(model.Id, model.Password))
+            if (_QuizService.CheckPassword(model.QuizId, model.Password))
             {
-                return Ok("Le mot de passe est correct");
+                return Ok(Messages.CorrectPassword);
             }
             else
             {
-                return BadRequest("Le mot de passe n'est pas correct");
+                return BadRequest(Messages.WrongPassword);
             }
         }
 
@@ -92,7 +85,7 @@ namespace QuizApp.Controllers
         public IActionResult Delete([FromRoute] Guid quizId)
         {
             _QuizService.Delete(_QuizService.GetById(quizId));
-            return Ok("Quiz est supprimé");
+            return Ok(Messages.QuizDeleted);
         }
     }
 }

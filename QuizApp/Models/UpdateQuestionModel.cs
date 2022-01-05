@@ -3,17 +3,30 @@ using QuizApp.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace QuizApp.Models
 {
-    public class CheckPasswordModel : IValidatableObject
+    public class UpdateQuestionModel : IValidatableObject
     {
+        public Guid Id { get; set; }
         public Guid QuizId { get; set; }
-        public string Password { get; set; }
-        
+        public string Desc { get; set; }
+        public virtual ICollection<AnswerModel> Answers { get; set; }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
+            //Id est vide ?
+            if (string.IsNullOrWhiteSpace(Id.ToString()))
+            {
+                yield return new ValidationResult(Messages.EmptyId,
+                    new List<string>()
+                {
+                    nameof(Id)
+                });
+            }
+
             //QuizId est vide ?
             if (string.IsNullOrWhiteSpace(QuizId.ToString()))
             {
@@ -24,13 +37,13 @@ namespace QuizApp.Models
                 });
             }
 
-            //Password est vide ?
-            if (string.IsNullOrWhiteSpace(Password))
+            //Description est vide ?
+            if (string.IsNullOrWhiteSpace(Desc))
             {
-                yield return new ValidationResult(Messages.EmptyPassword,
+                yield return new ValidationResult(Messages.EmptyDesc,
                     new List<string>()
                 {
-                    nameof(Password)
+                nameof(Desc)
                 });
             }
         }
