@@ -18,10 +18,10 @@ namespace QuizApp.Controllers
 
         //-----------------------GET--------------------------------
 
-        [HttpGet("rank/{quizId:Guid}")]
-        public IActionResult GetRankByQuizId([FromRoute] Guid quizId)
+        [HttpGet("ranking/{quizId:Guid}")]
+        public IActionResult GetRankingByQuizId([FromRoute] Guid quizId)
         {
-            return Ok(_ScoreService.GetRankByQuizId(quizId).Select(s => new
+            return Ok(_ScoreService.GetRankingByQuizId(quizId).Select(s => new
             DisplayRankModel(s)));
         }
 

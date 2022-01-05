@@ -6,6 +6,6 @@ namespace QuizApp.Services
 {
     public interface IScoreService : ICRUDService<Score>
     {
-        IEnumerable<Score> GetRankByQuizId(Guid quizId);
+        IEnumerable<Score> GetRankingByQuizId(Guid quizId);
     }
 }

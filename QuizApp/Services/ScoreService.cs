@@ -13,7 +13,7 @@ namespace QuizApp.Services
             _Repository = repository;
         }
 
-        public IEnumerable<Score> GetRankByQuizId(Guid quizId)
+        public IEnumerable<Score> GetRankingByQuizId(Guid quizId)
         {
             return _Repository.GetScoreByQuizId(quizId);
         }
