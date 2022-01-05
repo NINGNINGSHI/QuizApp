@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace QuizApp.Models
 {
-    public class UpdateQuestionModel : IValidatableObject
+    public class DisplayUpdateQuestionModel : IValidatableObject
     {
         public Guid Id { get; set; }
         public Guid QuizId { get; set; }
         public string Desc { get; set; }
         public virtual ICollection<AnswerModel> Answers { get; set; }
 
-        public UpdateQuestionModel(Guid id, Guid quizId, string desc,
+        public DisplayUpdateQuestionModel(Guid id, Guid quizId, string desc,
             ICollection<AnswerModel> answers)
         {
             Id = id;
