@@ -38,7 +38,7 @@ namespace QuizApp.Controllers
         public IActionResult GetAllPublishedQuizes()
         {
             return Ok(_QuizService.GetByStateType(StateType.Published).Select(s => new
-            DisplayDraftedQuizes(s)));
+            DisplayPublishedQuizes(s)));
         }
 
         //-----------------------POST--------------------------------
