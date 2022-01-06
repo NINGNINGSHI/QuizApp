@@ -26,7 +26,7 @@ namespace QuizApp.Controllers
         }
 
         //-----------------------POST--------------------------------
-        [HttpPost("create-or-update-score")]
+        [HttpPost("create-score")]
         public IActionResult CreateScore([FromBody] CreateScoreModel model)
         {
             Score score = new(model.QuizId, model.Pseudo, model.Value);
